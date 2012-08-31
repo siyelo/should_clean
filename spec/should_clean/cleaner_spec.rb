@@ -40,4 +40,31 @@ describe ShouldClean::Cleaner do
         should == 'it "actions"'
     end
   end
+
+  describe "conversion of adverbs" do
+    it "converts 'should correctly calculate' to 'correctly calculates'" do
+      ShouldClean.clean('it "should correctly calculate"').
+        should == 'it "correctly calculates"'
+    end
+
+    it "converts 'should auto generate' to 'auto generate'" do
+      ShouldClean.clean('it "should auto generate"').
+        should == 'it "auto generates"'
+    end
+
+    it "converts 'should automatically generate' to 'automatically generates'" do
+      ShouldClean.clean('it "should automatically generate"').
+        should == 'it "automatically generates"'
+    end
+
+    it "converts 'should only list' to 'only lists'" do
+      ShouldClean.clean('it "should only list"').
+        should == 'it "only lists"'
+    end
+
+    it "converts 'should by default have' to 'by default has'" do
+      ShouldClean.clean('it "should by default have"').
+        should == 'it "by default has"'
+    end
+  end
 end

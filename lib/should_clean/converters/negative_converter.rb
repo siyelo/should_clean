@@ -1,15 +1,13 @@
 module ShouldClean
   module Converters
-    class NegativeConverter
+    class NegativeConverter < Converter
 
-      attr_accessor :text
-
-      def initialize(text)
-        @text = text
+      def self.matcher
+        /should( not|n't)/
       end
 
-      def convert(match)
-        text.gsub(match, 'does not').strip
+      def convert
+        text.gsub(splitter, 'does not').strip
       end
 
     end

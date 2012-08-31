@@ -2,6 +2,7 @@ require "should_clean/version"
 
 module ShouldClean
   autoload :Cleaner, 'should_clean/cleaner'
+  autoload :Adverbs, 'should_clean/adverbs'
   autoload :Conjugator, 'should_clean/conjugator'
   autoload :Converters, 'should_clean/converters'
 

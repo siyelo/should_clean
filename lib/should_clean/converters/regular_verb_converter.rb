@@ -1,15 +1,13 @@
 module ShouldClean
   module Converters
-    class RegularVerbConverter
+    class RegularVerbConverter < Converter
 
-      attr_accessor :text
-
-      def initialize(text)
-        @text = text
+      def self.matcher
+        /should (be able to)?/
       end
 
-      def convert(match)
-        method_name, description = text.split(match)
+      def convert
+        method_name, description = text.split(splitter)
         verb, rest = description.lstrip.split(/\W/, 2) # split limit gives the regexp match $&
         active_verb = Conjugator.tpp(verb)
         "#{method_name}#{active_verb}#{$&}#{rest}".strip

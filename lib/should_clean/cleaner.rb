@@ -1,18 +1,18 @@
 module ShouldClean
   module Cleaner
     def self.clean(text)
-      convertors = {
-        /should( not|n't)/ => Converters::NegativeConverter,
-        /should (be able to)?/ => Converters::RegularVerbConverter
-        # /should (be able to)?/: IrregularVerbConvertor
-        # /should (be able to)?/: AdverbConvertor
-      }
 
-      matcher = convertors.keys.detect { |key| text.match(key) }
+      # order of convertors matter
+      convertors = [
+        Converters::NegativeConverter,
+        Converters::AdverbConverter,
+        Converters::RegularVerbConverter
+      ]
 
-      if matcher
-        converter = convertors[matcher].new(text)
-        converter.convert($&)
+      convertor = convertors.detect { |converter| text.match(converter.matcher) }
+
+      if convertor
+        convertor.new(text, Regexp.last_match).convert
       else
         puts 'No match'
       end
