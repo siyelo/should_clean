@@ -13,8 +13,6 @@ module ShouldClean
 
       if convertor
         convertor.new(text, Regexp.last_match).convert
-      else
-        puts 'No match'
       end
     end
   end

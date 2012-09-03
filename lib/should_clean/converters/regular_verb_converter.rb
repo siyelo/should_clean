@@ -10,7 +10,7 @@ module ShouldClean
         method_name, description = text.split(splitter)
         verb, rest = description.lstrip.split(/\W/, 2) # split limit gives the regexp match $&
         active_verb = Conjugator.tpp(verb)
-        "#{method_name}#{active_verb}#{$&}#{rest}".strip
+        "#{method_name}#{active_verb}#{$&}#{rest}"
       end
 
     end

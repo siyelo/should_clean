@@ -7,7 +7,7 @@ module ShouldClean
       end
 
       def convert
-        text.gsub(splitter, 'does not').strip
+        text.gsub(splitter, 'does not')
       end
 
     end

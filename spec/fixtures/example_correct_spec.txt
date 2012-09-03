@@ -1,0 +1,17 @@
+require 'spec_helper'
+
+describe "Example" do
+  describe "namespace" do
+    it "does something" do
+      1.should == 1
+    end
+
+    it 'does something' do
+      italian.should == "hi"
+    end
+
+    it %{does something} do
+      "it".should == "it"
+    end
+  end
+end

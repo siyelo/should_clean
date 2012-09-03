@@ -10,7 +10,7 @@ module ShouldClean
         prefix, postfix = text.split(splitter)
         verb, remainder = postfix.lstrip.split(/\W/, 2) # split limit gives the regexp match $&
         active_verb = Conjugator.tpp(verb)
-        "#{prefix}#{adverb} #{active_verb}#{$&}#{remainder}".strip
+        "#{prefix}#{adverb} #{active_verb}#{$&}#{remainder}"
       end
 
       private
