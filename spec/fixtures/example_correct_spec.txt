@@ -7,6 +7,7 @@ describe "Example" do
     end
 
     it 'does something' do
+      italian = "hi"
       italian.should == "hi"
     end
 

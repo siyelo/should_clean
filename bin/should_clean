@@ -1,3 +1,26 @@
 #!/usr/bin/env ruby
+here = File.expand_path(File.dirname(__FILE__))
+$:<< "#{here}/../lib"
 
+require 'optparse'
 require 'should_clean'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: should_clean -d DIRECTORY"
+
+  opts.on('-d DIRECTORY', 'directory to run should_clean') do |directory|
+    options[:directory] = directory
+  end
+
+  opts.on('-s', 'simulate the cleaner') do |simulate|
+    options[:simulate] = simulate
+  end
+end.parse!
+
+if options[:directory].nil?
+  system("#{__FILE__} --help")
+else
+  ShouldClean.clean(options[:directory], options[:simulate])
+end

@@ -5,31 +5,28 @@ module ShouldClean
   class Replacer
     MATCHER = /^it /
 
-    def self.diff(file, buffer = $stdout)
-      file.readlines.each do |line|
-        if line.strip.match(MATCHER)
-          cleaned = ShouldClean::Cleaner.clean(line)
-          if cleaned
-            buffer.puts("- #{line.strip}")
-            buffer.puts("+ #{cleaned.strip}")
-          end
-        end
-      end
+    attr_accessor :file_path, :content
+
+    def initialize(file_path)
+      @file_path = file_path
+      @content = File.read(file_path)
     end
 
-    def self.replace!(file)
+    def run
       tmp_file = Tempfile.new('tmp.txt')
-      file.each_line.each do |line|
+
+      content.each_line.each do |line|
         if line.strip.match(MATCHER)
-          cleaned = ShouldClean::Cleaner.clean(line)
+          cleaned = Cleaner.clean(line)
           tmp_file.puts cleaned || line
         else
           tmp_file.puts line
         end
       end
+
       tmp_file.close
 
-      FileUtils.mv(tmp_file, file.path)
+      FileUtils.mv(tmp_file, file_path)
     end
   end
 end
