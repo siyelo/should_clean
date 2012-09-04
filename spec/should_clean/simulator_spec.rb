@@ -9,6 +9,8 @@ describe ShouldClean::Simulator do
     simulator = ShouldClean::Simulator.new(spec_file, buffer)
     simulator.run
     buffer.string.should == <<eos
+- it "should create some (should another)" do
++ it "creates some (should another)" do
 - it "should do something" do
 + it "does something" do
 - it 'should do something' do

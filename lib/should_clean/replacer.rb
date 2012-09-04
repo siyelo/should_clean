@@ -3,7 +3,7 @@ require 'tempfile'
 
 module ShouldClean
   class Replacer
-    MATCHER = /^it /
+    MATCHER = /^it\s*('|"|%{)/
 
     attr_accessor :file_path, :content
 

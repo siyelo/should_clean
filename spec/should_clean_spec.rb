@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 describe ShouldClean do
-  let(:model_file) { File.join(File.dirname(__FILE__), 'fixtures', 'project', 'app', 'models', 'code.rb') }
-  let(:spec_file) { File.join(File.dirname(__FILE__), 'fixtures', 'project', 'spec', 'models', 'code_spec.rb') }
+  let(:spec_file) { File.join(File.dirname(__FILE__), 'fixtures', 'project', 'spec', 'models', 'example_spec.rb') }
+  let(:example_file) { File.join(File.dirname(__FILE__), 'fixtures', 'example_spec.txt') }
   let(:correct_spec_file) { File.join(File.dirname(__FILE__), 'fixtures', 'example_correct_spec.txt') }
 
   before :each do
-    @original_content = File.read(model_file)
+    FileUtils.cp(example_file, spec_file)
+    @original_content = File.read(spec_file)
   end
 
   after :each do

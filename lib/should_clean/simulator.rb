@@ -3,7 +3,7 @@ require 'tempfile'
 
 module ShouldClean
   class Simulator
-    MATCHER = /^it /
+    MATCHER = /^it\s*('|"|%{)/
 
     attr_accessor :content, :buffer
 
