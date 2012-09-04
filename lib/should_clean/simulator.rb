@@ -13,6 +13,8 @@ module ShouldClean
     end
 
     def run
+      return unless content.valid_encoding?
+
       content.each_line.each do |line|
         if line.strip.match(MATCHER)
           cleaned = Cleaner.clean(line)

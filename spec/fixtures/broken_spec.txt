@@ -1,0 +1,12 @@
+require File.dirname(__FILE__) + '/../../../spec_helper'
+
+describe Notification do
+
+  it "should instantiate a notification for a given transaction ¿¿¿¿" do
+    notification = BankStatement::Notification.for(:transaction => @transaction)
+    notification.is_a?(BankStatement::Notification).should be_true
+    notification.transaction.should == @transaction
+  end
+end
+
+h×¤ÄÉÿgÆ<Ï ‚x?name(__FILE__) + '/../../../spec_helper'

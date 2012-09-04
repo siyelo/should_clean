@@ -17,4 +17,11 @@ describe ShouldClean::Simulator do
 + it %{does something} do
 eos
   end
+
+  it "does not raise exception when file has invalid encoding" do
+    spec_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'broken_spec.txt')
+    buffer = StringIO.new
+    simulator = ShouldClean::Simulator.new(spec_file, buffer)
+    lambda { simulator.run }.should_not raise_exception(ArgumentError)
+  end
 end

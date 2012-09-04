@@ -13,6 +13,8 @@ module ShouldClean
     end
 
     def run
+      return unless content.valid_encoding?
+
       tmp_file = Tempfile.new('tmp.txt')
 
       content.each_line.each do |line|
