@@ -1,24 +1,26 @@
 # ShouldClean
 
-TODO: Write a gem description
+Clean "should" from test libraries. Example:
+
+    it "should do something"
+
+is replaced with:
+
+    it "does something"
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'should_clean'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install should_clean
+    gem install should_clean
 
 ## Usage
 
-TODO: Write usage instructions here
+Search and replace in a directory:
+
+    should_clean -d DIRECTORY
+
+Run in simulator mode (it just prints the changes to the screen)
+
+    should_clean -d DIRECTORY -s
 
 ## Contributing
 
