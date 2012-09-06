@@ -4,8 +4,8 @@ require File.expand_path('../lib/should_clean/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Sachin Ranchod", "Dalibor Nasevic"]
   gem.email         = ["sachin.ranchod@gmail.com", "dalibor.nasevic@gmail.com"]
-  gem.description   = %q{Clean should from test libraries}
-  gem.summary       = %q{It changes "it should do" to "it does"}
+  gem.description   = %q{Utility to remove unneeded shoulds from your RSpec test descriptions - 'it "should do something"' becomes 'it "does something"'}
+  gem.summary       = %q{It changes "it should do" to "it does" in your RSpec files}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
