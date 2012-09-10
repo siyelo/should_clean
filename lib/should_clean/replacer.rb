@@ -3,8 +3,6 @@ require 'tempfile'
 
 module ShouldClean
   class Replacer
-    MATCHER = /^it\s*('|"|%{)/
-
     attr_accessor :file_path, :content
 
     def initialize(file_path)
@@ -18,12 +16,8 @@ module ShouldClean
       tmp_file = Tempfile.new('tmp.txt')
 
       content.each_line.each do |line|
-        if line.strip.match(MATCHER)
-          cleaned = Cleaner.clean(line)
-          tmp_file.puts cleaned || line
-        else
-          tmp_file.puts line
-        end
+        cleaned = Cleaner.clean(line)
+        tmp_file.puts cleaned || line
       end
 
       tmp_file.close

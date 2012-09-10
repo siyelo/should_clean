@@ -3,7 +3,7 @@ module ShouldClean
     class NegativeConverter < Converter
 
       def self.matcher
-        /should( not|n't)/
+        /#{NEGATIVE_SPEC}/
       end
 
       def convert

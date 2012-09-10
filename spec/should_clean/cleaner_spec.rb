@@ -25,7 +25,7 @@ describe ShouldClean::Cleaner do
 
     it "converts 'should be able to action' to 'actions'" do
       ShouldClean::Cleaner.clean('it "should be able to action"').
-        should == 'it "actions"'
+        should == 'it "is able to action"'
     end
   end
 
@@ -75,6 +75,13 @@ describe ShouldClean::Cleaner do
     it "converts 'shouldn't be foo' to 'is not foo'" do
       ShouldClean::Cleaner.clean('it "shouldn\'t be foo"').
         should == 'it "is not foo"'
+    end
+  end
+
+  describe "no change required" do
+    it "constrain changes to beginning of doc string" do
+      ShouldClean::Cleaner.clean('it "asks for a failure_message_for_should when something"').
+        should == nil
     end
   end
 end
