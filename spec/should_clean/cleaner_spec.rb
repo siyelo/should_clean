@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ShouldClean::Cleaner do
 
-  describe "normal conversion from future to present tense" do
+  describe "regular verb converter" do
     it "converts spec defined with double quotes" do
       ShouldClean::Cleaner.clean('it "should action something"').
         should == 'it "actions something"'
@@ -22,18 +22,6 @@ describe ShouldClean::Cleaner do
       ShouldClean::Cleaner.clean('it "should do something"').
         should == 'it "does something"'
     end
-  end
-
-  describe "conversion of should variations" do
-    it "converts 'should not action' to 'does not action'" do
-      ShouldClean::Cleaner.clean('it "should not action"').
-        should == 'it "does not action"'
-    end
-
-    it "converts 'shouldn't action' to 'does not action'" do
-      ShouldClean::Cleaner.clean('it "shouldn\'t action"').
-        should == 'it "does not action"'
-    end
 
     it "converts 'should be able to action' to 'actions'" do
       ShouldClean::Cleaner.clean('it "should be able to action"').
@@ -41,7 +29,7 @@ describe ShouldClean::Cleaner do
     end
   end
 
-  describe "conversion of adverbs" do
+  describe "adverb converter" do
     it "converts 'should correctly calculate' to 'correctly calculates'" do
       ShouldClean::Cleaner.clean('it "should correctly calculate"').
         should == 'it "correctly calculates"'
@@ -65,6 +53,28 @@ describe ShouldClean::Cleaner do
     it "converts 'should by default have' to 'by default has'" do
       ShouldClean::Cleaner.clean('it "should by default have"').
         should == 'it "by default has"'
+    end
+  end
+
+  describe "negative converter" do
+    it "converts 'should not action' to 'does not action'" do
+      ShouldClean::Cleaner.clean('it "should not action"').
+        should == 'it "does not action"'
+    end
+
+    it "converts 'shouldn't action' to 'does not action'" do
+      ShouldClean::Cleaner.clean('it "shouldn\'t action"').
+        should == 'it "does not action"'
+    end
+
+    it "converts 'should not be foo' to 'is not foo'" do
+      ShouldClean::Cleaner.clean('it "should not be foo"').
+        should == 'it "is not foo"'
+    end
+
+    it "converts 'shouldn't be foo' to 'is not foo'" do
+      ShouldClean::Cleaner.clean('it "shouldn\'t be foo"').
+        should == 'it "is not foo"'
     end
   end
 end

@@ -7,10 +7,10 @@ module ShouldClean
       end
 
       def convert
-        prefix, postfix = text.split(splitter, 2)
-        verb, remainder = postfix.lstrip.split(/\W/, 2) # split limit gives the regexp match $&
+        subject, expectation = text.split(splitter, 2)
+        verb, object = expectation.lstrip.split(/\W/, 2) # split limit gives the regexp match $&
         active_verb = Conjugator.tpp(verb)
-        "#{prefix}#{adverb} #{active_verb}#{$&}#{remainder}"
+        "#{subject}#{adverb} #{active_verb}#{$&}#{object}"
       end
 
       private
