@@ -6,14 +6,16 @@ module ShouldClean
         /#{NEGATIVE_SPEC}/
       end
 
-      def convert
-        subject, expectation = text.split(splitter, 2)
-        verb, object = expectation.lstrip.split(' ', 2)
-
+      private
+      def active_verb
         if verb == 'be'
-          "#{subject}is not #{object}"
+          if adverb == 'by default'
+            @active_verb = 'does not default to'
+          else
+            @active_verb = 'is not'
+          end
         else
-          text.gsub(splitter, 'does not')
+          @active_verb = ['does not', adverb, verb].compact.join(' ')
         end
       end
     end

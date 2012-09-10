@@ -29,7 +29,7 @@ describe ShouldClean::Cleaner do
     end
   end
 
-  describe "adverb converter" do
+  describe "positive converter with adverb" do
     it "converts 'should correctly calculate' to 'correctly calculates'" do
       ShouldClean::Cleaner.clean('it "should correctly calculate"').
         should == 'it "correctly calculates"'
@@ -54,6 +54,16 @@ describe ShouldClean::Cleaner do
       ShouldClean::Cleaner.clean('it "should by default have"').
         should == 'it "by default has"'
     end
+
+    it "converts 'should by default be 1' to 'defaults to 1'" do
+      ShouldClean::Cleaner.clean('it "should by default be 1"').
+        should == 'it "defaults to 1"'
+    end
+
+    it "converts 'should automatically be 1' to 'automatically is 1'" do
+      ShouldClean::Cleaner.clean('it "should automatically be 1"').
+        should == 'it "automatically is 1"'
+    end
   end
 
   describe "negative converter" do
@@ -75,6 +85,18 @@ describe ShouldClean::Cleaner do
     it "converts 'shouldn't be foo' to 'is not foo'" do
       ShouldClean::Cleaner.clean('it "shouldn\'t be foo"').
         should == 'it "is not foo"'
+    end
+  end
+
+  describe "negative converter with adverb" do
+    it "converts 'should not automatically save' to 'does not automatically save'" do
+      ShouldClean::Cleaner.clean('it "should not automatically save"').
+        should == 'it "does not automatically save"'
+    end
+
+    it "converts 'should not by default be 1' to 'does not default to 1'" do
+      ShouldClean::Cleaner.clean('it "should not by default be 1"').
+        should == 'it "does not default to 1"'
     end
   end
 

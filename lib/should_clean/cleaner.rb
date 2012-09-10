@@ -5,8 +5,7 @@ module ShouldClean
       # order of convertors matter
       convertors = [
         Converters::NegativeConverter,
-        Converters::AdverbConverter,
-        Converters::RegularVerbConverter
+        Converters::PositiveConverter
       ]
 
       convertor = convertors.detect { |converter| text.match(converter.matcher) }
