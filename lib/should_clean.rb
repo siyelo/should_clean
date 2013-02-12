@@ -9,11 +9,13 @@ module ShouldClean
   autoload :Conjugator, 'should_clean/conjugator'
   autoload :Converters, 'should_clean/converters'
 
-  def self.clean(dir, dry_run = true)
+  def self.clean(dir, dry_run = true, custom_matcher = "_spec\.rb$")
     runner_klass = dry_run ? Simulator : Replacer
 
+    puts "MATCHER: #{custom_matcher}"
     Find.find(dir) do |path|
-      if path.match /_spec\.rb$/
+      if path.match(custom_matcher)
+        puts "MATCHED: #{path}"
         runner = runner_klass.new(path)
         runner.run
       end

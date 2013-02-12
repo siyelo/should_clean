@@ -17,10 +17,14 @@ OptionParser.new do |opts|
   opts.on('-s', 'simulate the cleaner') do |simulate|
     options[:simulate] = simulate
   end
+
+  opts.on('-m', 'custom file matcher') do | matcher |
+  	options[:custom_matcher] = matcher
+  end
 end.parse!
 
 if options[:directory].nil?
   system("#{__FILE__} --help")
 else
-  ShouldClean.clean(options[:directory], options[:simulate])
+  ShouldClean.clean(options[:directory], options[:simulate], options[:custom_matcher])
 end
