@@ -1,5 +1,7 @@
 # ShouldClean
 
+[![Build Status](https://travis-ci.org/siyelo/should_clean.png)](https://travis-ci.org/siyelo/should_clean)
+
 Clean "should" from test libraries. Example:
 
     it "should do something"
