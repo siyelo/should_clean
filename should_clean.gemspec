@@ -15,5 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = ShouldClean::VERSION
 
+  gem.add_runtime_dependency 'fileutils', '~> 0.7'
   gem.add_development_dependency "rspec"
 end
