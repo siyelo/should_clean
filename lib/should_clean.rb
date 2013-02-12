@@ -15,7 +15,6 @@ module ShouldClean
     puts "MATCHER: #{custom_matcher}"
     Find.find(dir) do |path|
       if path.match(custom_matcher)
-        puts "MATCHED: #{path}"
         runner = runner_klass.new(path)
         runner.run
       end
