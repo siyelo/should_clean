@@ -12,7 +12,6 @@ module ShouldClean
   def self.clean(dir, dry_run = true, custom_matcher = "_spec\.rb$")
     runner_klass = dry_run ? Simulator : Replacer
 
-    puts "MATCHER: #{custom_matcher}"
     Find.find(dir) do |path|
       if path.match(custom_matcher)
         runner = runner_klass.new(path)
