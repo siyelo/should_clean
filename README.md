@@ -24,6 +24,10 @@ Run in simulator mode (it just prints the changes to the screen)
 
     should_clean -d DIRECTORY -s
 
+## Related Projects
+
+* [should_not](https://github.com/should-not/should_not): a gem to enforce that specs in RSpec and MiniTest do not begin with "should."
+
 ## Contributing
 
 1. Fork it
